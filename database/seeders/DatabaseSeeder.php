@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'عبدالرحمن أبوليفة',
             'email' => 'admin@gmail.com',
         ]);
+
+        $this->call(ShieldSeeder::class);
+
         Center::factory(5)->create()->each(function ($center) {
             User::factory(10)->create([
                 'center_id' => $center->id,

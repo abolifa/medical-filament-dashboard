@@ -77,4 +77,18 @@ class AuthController extends Controller
     {
         return response()->json($request->user());
     }
+
+    /**
+     * @throws ValidationException
+     */
+    public function checkNationalId(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'national_id' => 'required|string',
+        ]);
+        $exists = Patient::where('national_id', $data['national_id'])->exists();
+        return response()->json([
+            'exists' => $exists,
+        ]);
+    }
 }

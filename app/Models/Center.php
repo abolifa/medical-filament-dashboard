@@ -34,4 +34,13 @@ class Center extends Model
         return $this->hasMany(Schedule::class);
     }
 
+    public function stocks()
+    {
+        return $this->hasMany(CenterProductStock::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

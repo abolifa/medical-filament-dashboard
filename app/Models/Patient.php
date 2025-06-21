@@ -45,4 +45,10 @@ class Patient extends Authenticatable
         return $this->hasMany(Vital::class);
     }
 
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }

@@ -95,11 +95,13 @@ class PatientResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->label('رقم الهاتف')
+                    ->copyable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('national_id')
                     ->label('الرقم الوطني')
                     ->badge()
                     ->color('info')
+                    ->copyable()
                     ->alignCenter()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('family_issue_number')
