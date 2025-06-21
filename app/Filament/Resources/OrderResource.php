@@ -229,7 +229,16 @@ class OrderResource extends Resource
                         ->color('danger')
                         ->requiresConfirmation()
                         ->visible(fn($record) => $record->status === 'pending')
-                        ->action(fn($record) => $record->update(['status' => 'rejected'])),
+                        ->action(function (Order $record) {
+                            try {
+                                $record->update(['status' => 'rejected']);
+                            } catch (DomainException $e) {
+                                Notification::make()
+                                    ->title($e->getMessage())
+                                    ->danger()
+                                    ->send();
+                            }
+                        }),
                     Tables\Actions\Action::make('cancel')
                         ->label('إلغاء')
                         ->icon('fas-ban')
